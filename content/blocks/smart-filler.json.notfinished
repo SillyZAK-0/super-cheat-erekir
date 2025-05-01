@@ -1,0 +1,13 @@
+{
+    "size": 3,
+    "health": 6000,
+    "fogRadius": 60,
+    "solid": true,
+    "update": true,
+    "targetable": true,
+    "hasItems": false,
+    "destructible": true,
+    "category": "distribution",
+    "requirements": [],
+    "research": "next-wave"
+}

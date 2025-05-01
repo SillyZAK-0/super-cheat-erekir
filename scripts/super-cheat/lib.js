@@ -16,7 +16,7 @@ exports.loadSound = function (name, setter) {
     });
 }
 
-exports.modName = "invincible-cheat-mod-v7";
+exports.modName = "invincible-cheat-mod-v8";
 
 exports.newEffect = (lifetime, renderer) => new Effect(lifetime, cons(renderer));
 

@@ -1,0 +1,12 @@
+{
+    "size": 2,
+    "health": 3000,
+    "fogRadius": 100000,
+    "solid": true,
+    "targetable": true,
+    "hasItems": false,
+    "destructible": true,
+    "category": "effect",
+    "requirements": [],
+    "research": "next-wave"
+}

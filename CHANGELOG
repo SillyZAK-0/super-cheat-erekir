@@ -1,3 +1,9 @@
+4.0.0:
+- 支持 V8 (v149)
+- 修改无敌飞船的武器，改为一种远射程的定点炮
+- 无敌飞船现在有很大的雷达范围
+- 新增建筑‘全球雷达’
+
 3.1.1:
 - Fixed Adjustable Overdrive Projector crash bug in v145.1
 

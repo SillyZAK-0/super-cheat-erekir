@@ -42,7 +42,7 @@ const InvincibleForceFieldAbility = (radius, regen, max, cooldown) => {
 
 const invincibleBulletType = (() => {
 
-    const bt = extend(BasicBulletType, {
+    const bt = extend(PointBulletType, {
         hitEntity(b, other, initialHealth) {
             if (other && other.kill) {
                 Call.unitDestroy(other.id)
@@ -56,16 +56,54 @@ const invincibleBulletType = (() => {
         },
     });
 
+    const tailEffectTime = 12;
+    const trialEffect = lib.newEffect(tailEffectTime, e => {
+        let fx = Angles.trnsx(e.rotation, 24)
+        let fy = Angles.trnsy(e.rotation, 24)
+        Lines.stroke(3 * e.fout(), Pal.spore);
+        Lines.line(e.x, e.y, e.x + fx, e.y + fy);
+
+        Drawf.light(e.x, e.y, 60 * e.fout(), Pal.spore, 0.5);
+    });
+    const hitEffect = lib.newEffect(8, (e) => {
+        Draw.color(Pal.spore);
+        Lines.stroke(e.fout() * 1.5);
+
+        Angles.randLenVectors(e.id, 8, e.finpow() * 22, lib.floatc2((x, y) => {
+            let ang = Mathf.angle(x, y);
+            Lines.lineAngle(e.x + x, e.y + y, ang, e.fout() * 4 + 1);
+        }));
+    });
+    const shootEffect = lib.newEffect(8, (e) => {
+        Draw.color(Pal.spore, Pal.reactorPurple, e.fin());
+        let w = 1.0 + 5 * e.fout();
+        Drawf.tri(e.x, e.y, w, 15 * e.fout(), e.rotation);
+        Drawf.tri(e.x, e.y, w, 3 * e.fout(), e.rotation + 180);
+    });
+    const smokeEffect = lib.newEffect(8, (e) => {
+        Draw.color(Pal.spore, Pal.reactorPurple, Pal.reactorPurple2, e.fin());
+
+        Angles.randLenVectors(e.id, 5, e.finpow() * 6, e.rotation, 20, (x, y) => {
+            Fill.circle(e.x + x, e.y + y, e.fout() * 1.5);
+        });
+    });
+
     bt.damage = Infinity;
-    bt.splashDamage = Infinity;
-    bt.speed = 24.1;
-    bt.hitSize = 5;
-    bt.width = 7;
-    bt.height = 35;
-    bt.lifetime = 10;
-    bt.inaccuracy = 0;
-    bt.despawnEffect = Fx.hitBulletSmall;
-    bt.keepVelocity = false;
+    // bt.splashDamage = Infinity;
+    bt.speed = 600;
+    // bt.hitSize = 6;
+    // bt.width = 9;
+    // bt.height = 45;
+    bt.lifetime = 1;
+    bt.inaccuracy = 0
+    bt.keepVelocity = false
+    bt.trailSpacing = 20
+    bt.hitShake = 0.3
+    bt.shootEffect = shootEffect
+    bt.smokeEffect = smokeEffect
+    bt.despawnEffect = hitEffect
+    bt.hitEffect = hitEffect
+    bt.trailEffect = trialEffect
     return bt;
 })();
 
@@ -75,7 +113,7 @@ const invincibleWeapon = (() => {
 
     w.name = lib.modName + '-' + 'invincible-ship-weapon';
     w.length = 1.5;
-    w.reload = 7;
+    w.reload = 10;
     // w.ejectEffect = Fx.shellEjectSmall;
     w.bullet = invincibleBulletType;
     w.rotate = true;
@@ -99,7 +137,7 @@ const mech = (() => {
     m.weapons.add(invincibleWeapon);
     m.flying = true;
     m.speed = 120;
-    m.hitSize = 12;
+    m.hitSize = 16;
     m.accel = 0.01;
     m.rotateSpeed = 20;
     m.baseRotateSpeed = 20;
@@ -126,6 +164,7 @@ const mech = (() => {
     m.coreUnitDock = true;
     m.mineWalls = true;
     m.envDisabled = 0;
+    m.fogRadius = 80;
 
     return m;
 })();

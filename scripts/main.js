@@ -22,10 +22,11 @@ require('super-cheat/dps-tester-unit')
 require('super-cheat/dps-walls')
 require('super-cheat/unit-factory')
 require('super-cheat/team-changer')
+require('super-cheat/smart-filler')
 
 // Events.on(EventType.ClientLoadEvent, cons(e => {
 
-//     Icon.trash = new Packages.arc.scene.style.TextureRegionDrawable(Core.atlas.find("invincible-cheat-mod-v7-must-die-turret", Core.atlas.find("clear")))
+//     Icon.trash = new Packages.arc.scene.style.TextureRegionDrawable(Core.atlas.find("invincible-cheat-mod-v8-must-die-turret", Core.atlas.find("clear")))
 //     Icon.icons.put("trash", Icon.trash);
 
 //     Vars.ui.settings = new SettingsMenuDialog();

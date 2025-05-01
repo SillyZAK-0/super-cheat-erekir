@@ -6,7 +6,7 @@ const block = extend(UnitFactory, 'unit-factory', {
     init() {
         this.plans = Vars.content.getBy(ContentType.unit)
             .map(func(unitType => new UnitFactory.UnitPlan(unitType, 1, ItemStack.with(Items.graphite, 1))))
-            .filter(boolf(plan => !plan.unit.isHidden()))
+            .select(boolf(plan => !plan.unit.isHidden()))
         this.super$init();
         this.itemCapacity = 1;
         this.capacities[Items.graphite.id] = 1;
@@ -45,7 +45,7 @@ block.config(IntSeq, lib.cons2((tile, val) => {
 }));
 const allTeams = [
     Team.derelict, Team.sharded, Team.crux,
-    Team.green, Team.blue,
+    Team.green, Team.blue, Team.malis,
 ];
 lib.setBuilding(block, (block) => {
 

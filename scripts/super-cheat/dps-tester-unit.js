@@ -225,7 +225,7 @@ const landConstructor = prov(() => new JavaAdapter(MechUnit, {
             Draw.z(Layer.weather + 1)
             color.a = Math.min(this.dmgRecord.showBoardTime / boardTimeTotal * 3, 1)
 
-			const s = "message.invincible-cheat-mod-v7.dps-info-";
+			const s = "message.invincible-cheat-mod-v8.dps-info-";
             font.draw(Core.bundle.format(s + "armor", this.armor),                   x, (y -= gap), color, fontSize, false, Align.left)
             font.draw(Core.bundle.format(s + "hitsize", this.hitSize),               x, (y -= gap), color, fontSize, false, Align.left)
             font.draw(Core.bundle.format(s + "hits", hits),                          x, (y -= gap), color, fontSize, false, Align.left)
