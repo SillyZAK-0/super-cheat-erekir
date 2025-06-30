@@ -1,6 +1,8 @@
 # 无敌作弊 Invincible Cheat Mod
 不做人的 Mindustry 作弊 Mod，滥用会影响游戏体验。
 
+EREKIR EDITION
+
 Inhumane Mindustry cheating mod, abuse will affect the game experience.
 
 <hr />
